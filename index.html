@@ -1,4 +1,165 @@
-If you are here, then you probably didn't mean to.
-Here are some links that may be useful:
-profile.ejxp.org - Page Deticated to the owner of this site/domain
-ejxp.org - Page for Neutronium use
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Assets EJXP</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* Heading Styles */
+        h1, h2, h3 {
+            margin: 10px 0;
+            color: #ffffff;
+            opacity: 0;
+            animation: fadeIn 1.5s ease forwards;
+        }
+        h1 { animation-delay: 0.5s; }
+        h2 { animation-delay: 1s; }
+        h3 { animation-delay: 1.5s; }
+
+        /* Link Styles */
+        .link-container {
+            margin-top: 20px;
+            opacity: 0;
+            animation: slideIn 2s ease forwards;
+            animation-delay: 2s;
+        }
+        .link-container a {
+            color: #1f8bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .link-container a:hover {
+            color: #4aaaff;
+            text-decoration: underline;
+        }
+
+        /* Copy Button Styles */
+        .copy-container {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards;
+            animation-delay: 2.5s;
+        }
+        .copy-button {
+            margin-left: 8px;
+            padding: 5px 12px;
+            font-size: 0.9em;
+            cursor: pointer;
+            border: none;
+            background-color: #1f8bff;
+            color: #ffffff;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .copy-button:hover {
+            background-color: #4aaaff;
+        }
+
+        /* Footer Styles */
+        footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #bbbbbb;
+            opacity: 0;
+            animation: fadeIn 1.5s ease forwards;
+            animation-delay: 3s;
+        }
+        footer a {
+            color: #1f8bff;
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: #4aaaff;
+            text-decoration: underline;
+        }
+
+        /* IP Address Styles */
+        #locationInfo {
+            margin-top: 30px;
+            font-size: 1em;
+            color: #888;
+            opacity: 0;
+            animation: fadeIn 1.5s ease forwards;
+            animation-delay: 3.5s;
+        }
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <h2>If you are here, then you probably didn't mean to get here.</h2>
+    <h1>Here are some links that may be useful:</h1>
+    <div class="link-container">
+        <h3><a href="https://profile.ejxp.org" target="_blank">profile.ejxp.org</a> - Page Dedicated to the owner of this site/domain</h3>
+        <h3><a href="https://ejxp.org" target="_blank">ejxp.org</a> - Page for Neutronium use</h3>
+    </div>
+    
+    <footer>
+        <a href="https://discord.gg/g8rgJf5JHQ" target="_blank">Click here to join the official Neutronium Discord server</a>
+    </footer>
+
+    <div class="copy-container">
+        <span id="copyText">support@ejxp.org</span>
+        <button class="copy-button" onclick="copyToClipboard()">Copy</button>
+    </div>
+
+    <div id="locationInfo">Fetching your IP information...</div>
+
+    <script>
+        // Function to copy email to clipboard
+        function copyToClipboard() {
+            const textToCopy = document.getElementById("copyText").innerText;
+            navigator.clipboard.writeText(textToCopy)
+                .then(() => {
+                    alert("Text copied to clipboard!");
+                })
+                .catch((error) => {
+                    console.error("Copy failed", error);
+                });
+        }
+
+        // Fetch and display user's IP, ISP, and location info
+        fetch('https://ipwho.is/')
+            .then(response => response.json())
+            .then(data => {
+                const locationInfo = document.getElementById("locationInfo");
+                locationInfo.innerHTML = `
+                    <strong>Your IP address:</strong> ${data.ip}<br>
+                    <strong>ISP:</strong> ${data.connection.isp}<br>
+                    <strong>Location:</strong> ${data.city}, ${data.region}, ${data.country} <br>
+                    <strong>(Don't worry, this isn't saved/leaked)</strong>
+                `;
+            })
+            .catch(error => {
+                console.error("Failed to fetch location information", error);
+                document.getElementById("locationInfo").innerText = "Unable to retrieve location information.";
+            });
+    </script>
+</body>
+</html>
