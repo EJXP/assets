@@ -1,0 +1,19 @@
+{
+  "articles": [
+    {
+      "title": "Top 10 Programming Languages of 2025",
+      "thumbnail": "https://assets.ejxp.org/images/articles/programming-languages.jpg",
+      "link": "https://ejxp.org/articles/top-programming-languages-2025"
+    },
+    {
+      "title": "5 Upcoming Games You Shouldn't Miss",
+      "thumbnail": "https://assets.ejxp.org/images/articles/upcoming-games.jpg",
+      "link": "https://ejxp.org/articles/upcoming-games-2025"
+    },
+    {
+      "title": "How to Build Your First Game Engine",
+      "thumbnail": "https://assets.ejxp.org/images/articles/build-game-engine.jpg",
+      "link": "https://ejxp.org/articles/build-game-engine"
+    }
+  ]
+}
